@@ -1,0 +1,56 @@
+@import "../../node_modules/bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@import "tokens";
+
+@import "login";
+@import "header";
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+:root {
+  /* Light theme colors */
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --border-color: rgba(192, 192, 192, 0.6);
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] {
+  /* Dark theme colors */
+  --background-color: #121212;
+  --text-color: #e0e0e0;
+  --primary-color: #1e88e5;
+  --secondary-color: #43a047;
+  --border-color: #b2b2b2;
+  --shadow-color: rgba(255, 255, 255, 0.3);
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.p, h1, h2, h3, h4, h5, h6, label, a {
+  font-family: "Roboto Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  color: var(--text-color);
+  font-style: normal;
+}
+
+input{
+  border-radius: .6rem;
+  border: 1px solid var(--border-color);
+}
+
+button{
+  background-color: $secondary !important;
+  color: white;
+}
