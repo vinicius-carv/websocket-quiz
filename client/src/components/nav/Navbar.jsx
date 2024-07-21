@@ -6,16 +6,16 @@ const Navbar = () => {
         <nav className="navbar">
             <ul className="navbar-links m-0">
                 <li>
-                    <NavLink to="/" activeClassName="active" exact>Home</NavLink>
+                    <NavLink to="/" activeclassname="active">Home</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/services" activeClassName="active">Services</NavLink>
+                    <NavLink to="/services" activeclassname="active">Services</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/contact" activeClassName="active">Contact</NavLink>
+                    <NavLink to="/contact" activeclassname="active">Contact</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/login" activeClassName="active">Login</NavLink>
+                    <NavLink to="/login" activeclassname="active">Login</NavLink>
                 </li>
             </ul>
         </nav>

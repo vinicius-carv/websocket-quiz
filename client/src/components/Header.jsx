@@ -24,10 +24,10 @@ const Header = () => {
 
     return (
         <header className="headerContainer d-flex justify-content-between align-items-center px-4">
-            <div className="d-flex align-items-center gap-4">
+            <a className="d-flex align-items-center gap-4" href="/">
                 <img src={logo} className="logo" alt="logo" />
                 <h2 className="edu-au-vic-wa-nt-hand-title m-0">{t('title')}</h2>
-            </div>
+            </a>
             <Navbar />
             <div className="d-flex justify-content-center gap-3">
                 <button onClick={() => setIsDarkMode(!isDarkMode)}>
