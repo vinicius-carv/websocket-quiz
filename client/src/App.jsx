@@ -5,7 +5,8 @@ import Home from './pages/Home';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
 import './scss/App.scss';
-import Login from "./components/logon/Login.jsx";
+import Login from "./pages/logon/Login.jsx";
+import Register from "./pages/logon/Register.jsx";
 
 function App() {
     const [isDarkMode, setIsDarkMode] = useState(
@@ -25,6 +26,7 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/services" element={<Services />} />
                     <Route path="/contact" element={<Contact />} />
+                    <Route path="/register" element={<Register />} />
                 </Routes>
             </main>
         </Router>

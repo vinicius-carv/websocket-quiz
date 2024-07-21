@@ -1,5 +1,7 @@
 {
   "welcome": "Bem-vindo",
   "login": "Entrar",
-  "title": "QuizzInterativo"
+  "title": "QuizzInterativo",
+  "register": "Registre-se",
+  "forgotPassword": "Esqueceu a senha?"
 }
