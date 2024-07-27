@@ -5,27 +5,24 @@ import axios from 'axios';
 import {t} from "i18next";
 import {useNavigate} from 'react-router-dom';
 
-const Register = () => {
+const CreateQuiz = () => {
     const navigate = useNavigate();
     const initialValues = {
-        name: '',
-        email: '',
-        password: '',
+        title: '',
+        description: '',
     };
 
     const validationSchema = Yup.object({
-        name: Yup.string().required('Required'),
-        email: Yup.string().email('Invalid email format').required('Required'),
-        password: Yup.string().required('Required'),
+        title: Yup.string().required('Required'),
     });
 
     const onSubmit = async (values, { setSubmitting, setStatus }) => {
         try {
-            const response = await axios.post('http://localhost:5000/api/users', values);
+            const response = await axios.post('http://localhost:5000/api/quiz', values);
             setStatus(response.data.message);
-            if (response.status === 200) {
-                navigate('/login');
-            }
+            // if (response.status === 200) {
+            //     navigate('/quiz');
+            // }
         } catch (error) {
             setStatus(error.response.data.message);
         }
@@ -34,7 +31,7 @@ const Register = () => {
 
     return (
         <div>
-            <h1>{t('register')}</h1>
+            <h1>{t('CreateQuiz')}</h1>
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
@@ -43,25 +40,17 @@ const Register = () => {
                 {({ isSubmitting, status }) => (
                     <Form className="form-container d-flex flex-column p-3 gap-3 border-2">
                         <div className="d-flex flex-column align-items-start">
-                            <label htmlFor="name">Name</label>
+                            <label htmlFor="name">Quiz Title</label>
                             <Field type="text" id="name" name="name"/>
                             <ErrorMessage name="name" component="div"/>
                         </div>
                         <div className="d-flex flex-column align-items-start">
-                            <label htmlFor="email">Email</label>
-                            <Field type="email" id="email" name="email"/>
-                            <ErrorMessage name="email" component="div"/>
+                            <label htmlFor="description">Description</label>
+                            <Field type="text" id="description" name="description"/>
                         </div>
-                        <div className="d-flex flex-column align-items-start">
-                            <label htmlFor="password">Password</label>
-                            <Field type="password" id="password" name="password"/>
-                            <ErrorMessage name="password" component="div"/>
-                        </div>
-                        <a>
 
-                        </a>
                         <button type="submit" disabled={isSubmitting}>
-                            {t('register')}
+                            {t('CreateQuiz')}
                         </button>
                         {status && <div>{status}</div>}
                     </Form>
@@ -71,4 +60,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default CreateQuiz;

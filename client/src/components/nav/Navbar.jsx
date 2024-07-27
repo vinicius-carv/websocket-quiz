@@ -1,7 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useUserContext } from "../../contexts/UserContext.jsx";
 
 const Navbar = () => {
+    const { logged } = useUserContext();
+
     return (
         <nav className="navbar">
             <ul className="navbar-links m-0">
@@ -14,9 +17,20 @@ const Navbar = () => {
                 <li>
                     <NavLink to="/contact" activeclassname="active">Contact</NavLink>
                 </li>
-                <li>
-                    <NavLink to="/login" activeclassname="active">Login</NavLink>
-                </li>
+                {!logged ? (
+                    <li>
+                        <NavLink to="/login" activeclassname="active">Login</NavLink>
+                    </li>
+                ) : (
+                    <>
+                        <li>
+                            <NavLink to="/profile" activeclassname="active">Profile</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/logout" activeclassname="active">Logout</NavLink>
+                        </li>
+                    </>
+                )}
             </ul>
         </nav>
     );

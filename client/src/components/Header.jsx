@@ -18,7 +18,7 @@ const Header = () => {
 
     const { t, i18n } = useTranslation();
 
-    const changeLangumage = (lng) => {
+    const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
     };
 

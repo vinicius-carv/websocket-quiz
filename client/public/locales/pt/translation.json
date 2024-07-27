@@ -3,5 +3,7 @@
   "login": "Entrar",
   "title": "QuizzInterativo",
   "register": "Registre-se",
-  "forgotPassword": "Esqueceu a senha?"
+  "forgotPassword": "Esqueceu a senha?",
+  "Home": "Início",
+  "Welcome": "Seja bem-vindo ao Quizz"
 }

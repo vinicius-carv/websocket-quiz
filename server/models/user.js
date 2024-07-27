@@ -1,7 +1,13 @@
 const bcrypt = require('bcrypt');
+const { v4: uuidv4 } = require('uuid');
 
 module.exports = (sequelize, DataTypes) => {
     const User = sequelize.define('User', {
+        uuid: {
+            type: DataTypes.UUID,
+            defaultValue: uuidv4,
+            allowNull: false,
+        },
         name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -14,18 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         password: {
             type: DataTypes.STRING,
             allowNull: false,
-        },
-        // TODO: Remove
-        plainPassword: {
-            type: DataTypes.STRING,
-            allowNull: true // Temporarily allow null
         }
-    });
-
-    // Hash password before saving the user
-    User.beforeCreate(async (user, options) => {
-        const salt = await bcrypt.genSalt(10);
-        user.password = await bcrypt.hash(user.password, salt);
     });
 
     return User;

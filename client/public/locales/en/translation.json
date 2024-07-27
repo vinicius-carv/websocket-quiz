@@ -3,5 +3,7 @@
   "login": "Login",
   "title": "InteractiveQuizz",
   "register": "Register",
-  "forgotPassword": "Forgot passoword?"
+  "forgotPassword": "Forgot passoword?",
+  "Home": "Home",
+  "Welcome": "Welcome to the Home page!"
 }

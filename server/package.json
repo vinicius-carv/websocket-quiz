@@ -1,10 +1,10 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Quiz application server",
+  "main": "server.js",
   "scripts": {
-    "start": "node .\\src\\main.js"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",

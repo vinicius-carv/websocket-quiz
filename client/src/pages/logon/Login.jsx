@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-import {t} from "i18next";
+import { useUserContext } from '../../contexts/UserContext.jsx';
+import { useNavigate } from 'react-router-dom';
+import { t } from "i18next";
 
 const Login = () => {
+    const { setLogged } = useUserContext();
+    const navigate = useNavigate();
+
     const initialValues = {
         email: '',
         password: '',
@@ -18,8 +23,11 @@ const Login = () => {
     const onSubmit = async (values, { setSubmitting, setStatus }) => {
         console.log('Submitting login form:', values);
         try {
-            const response = await axios.post('http://localhost:5000/login', values);
+            const response = await axios.post('http://localhost:5000/api/login', values);
+            setLogged(true);
+            localStorage.setItem('userId', response.data.userId);
             setStatus(response.data.message);
+            navigate('/');
         } catch (error) {
             setStatus(error.response ? error.response.data.message : 'Login failed');
         }
