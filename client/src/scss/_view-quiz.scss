@@ -1,0 +1,38 @@
+.quiz-container {
+  .quiz-questions-container {
+    flex-basis: 50%;
+
+    .quiz-question {
+      &:hover {
+        cursor: default;
+      }
+      .quiz-answers {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  }
+
+  .quiz-info-container {
+    flex-basis: 50%;
+    height: fit-content;
+    .quiz-data-container {
+
+      .quiz-action-btn {
+        background-color: transparent !important;
+        width: fit-content;
+        height: fit-content;
+        &:hover{
+          border: none !important;
+        }
+      }
+    }
+  }
+}
+
+html[data-theme='dark'] .quiz-action-btn {
+  color: white;
+}
+
+html[data-theme='light'] .quiz-action-btn {
+  color: black;
+}

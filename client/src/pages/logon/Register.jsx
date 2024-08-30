@@ -33,7 +33,7 @@ const Register = () => {
     };
 
     return (
-        <div>
+        <div className="container align-self-center">
             <h1>{t('register')}</h1>
             <Formik
                 initialValues={initialValues}

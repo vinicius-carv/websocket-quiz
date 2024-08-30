@@ -12,14 +12,14 @@ const Home = () => {
     };
 
     return (
-        <div>
+        <div className="container align-self-center">
             <div>
                 <h1>{t('Home')}</h1>
                 <p>{t('Welcome')}</p>
             </div>
-            <div className="quizes d-flex flex-row gap-5">
+            <div className="quizes align-self-baseline d-flex flex-row gap-5 justify-content-center">
                 {/*TODO: Implement Quiz displaying, placeholder for now*/}
-                <div onClick={() => handleNavigate(1)} className="card col-4">
+                <div onClick={() => handleNavigate(1)} className="card">
                     <div className="card-body">
                         <div className="row">
                             <div className="col-12">
@@ -33,7 +33,7 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                <div onClick={() => handleNavigate(2)} className="card col-4">
+                <div onClick={() => handleNavigate(2)} className="card">
                     <div className="card-body">
                         <div className="row">
                             <div className="col-12">
@@ -47,7 +47,7 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                <div onClick={() => handleNavigate(3)} className="card col-4">
+                <div onClick={() => handleNavigate(3)} className="card">
                     <div className="card-body">
                         <div className="row">
                             <div className="col-12">

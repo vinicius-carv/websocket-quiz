@@ -14,7 +14,9 @@ const Logout = () => {
     };
 
     return (
-        <button onClick={handleLogout}>Confirm logout</button>
+        <div className="container align-self-center">
+            <button onClick={handleLogout}>Confirm logout</button>
+        </div>
     );
 };
 

@@ -35,7 +35,7 @@ const Login = () => {
     };
 
     return (
-        <div>
+        <div className="container align-self-center">
             <h1>Login</h1>
             <Formik
                 initialValues={initialValues}
@@ -43,7 +43,7 @@ const Login = () => {
                 onSubmit={onSubmit}
             >
                 {({ isSubmitting, status }) => (
-                    <Form className="form-container d-flex flex-column p-3 gap-3 border-2">
+                    <Form className="form-container position-relative d-flex flex-column p-3 gap-3 border-2">
                         <div className="d-flex flex-column align-items-start">
                             <label htmlFor="email">Email</label>
                             <Field type="email" id="email" name="email" />

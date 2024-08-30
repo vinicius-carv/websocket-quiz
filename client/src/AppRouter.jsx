@@ -8,6 +8,7 @@ import Login from './pages/logon/Login';
 import Register from './pages/logon/Register';
 import Logout from "./pages/logon/Logout.jsx";
 import CreateQuiz from "./pages/quiz/CreateQuiz.jsx";
+import ViewQuiz from "./pages/quiz/ViewQuiz.jsx";
 
 const AppRouter = () => {
     return (
@@ -19,7 +20,9 @@ const AppRouter = () => {
                     <Route path="/home" element={<Home />} />
                     <Route path="/services" element={<Services />} />
                     <Route path="/contact" element={<Contact />} />
+
                     <Route path="/create-quiz" element={<CreateQuiz />} />
+                    <Route path="/quiz" element={<ViewQuiz />} />
 
                     <Route path="/register" element={<Register />} />
                     <Route path="/login" element={<Login />} />
