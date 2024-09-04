@@ -10,9 +10,9 @@ exports.getAllQuizzes = async (req, res) => {
 };
 
 exports.createQuiz = async (req, res) => {
-    console.log("Create Quiz endpoint activated...");
     try {
-        const quiz = await Quiz.create(req.body);
+        const { title, description, imageUrl } = req.body;
+        const quiz = await Quiz.create({ title, description, imageUrl });
         res.status(201).json({ id: quiz.id, message: 'Quiz created successfully' });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -21,7 +21,7 @@ exports.createQuiz = async (req, res) => {
 
 exports.getQuizById = async (req, res) => {
     try {
-        const quiz = await Quiz.findByPk(req.params.id);
+        const quiz = await Quiz.findByPk(req.params.id, { include: [{ model: Question, as: 'questions' }] });
         if (quiz) {
             res.json(quiz);
         } else {

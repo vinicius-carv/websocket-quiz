@@ -4,10 +4,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        question: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
         questionType: {
             type: DataTypes.ENUM('MultipleChoices', 'TruthFalse'),
             allowNull: false,
@@ -16,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'Quiz',
+                model: 'Quizzes',
                 key: 'id',
             }
         },

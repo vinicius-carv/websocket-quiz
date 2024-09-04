@@ -1,21 +1,25 @@
 import React, {useState, useEffect} from 'react';
 import {useSearchParams} from "react-router-dom";
+import axios from "axios";
 
 const ViewQuiz = () => {
     const [searchParams] = useSearchParams();
     const quizId = searchParams.get("id");
 
-    const [quizFound, setQuizFound] = useState(null); // null means not loaded yet, false means not found, and object means found
+    const [quizFound, setQuizFound] = useState(null);
     const [quizNotFound, setQuizNotFound] = useState(false);
+
+    const [questions, setQuestions] = React.useState([]);
+    const [questionNotFound, setQuestionNotFound] = useState(false);
 
     useEffect(() => {
         const fetchQuiz = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/quiz/${quizId}`);
-                if (!response.ok) {
+                const response = await axios.get(`http://localhost:5000/api/quiz/${quizId}`);
+                if (response.status !== 200) {
                     setQuizNotFound(true);
                 } else {
-                    const quizData = await response.json();
+                    const quizData = response.data;
                     setQuizFound(quizData);
                     setQuizNotFound(false);
                 }
@@ -25,8 +29,23 @@ const ViewQuiz = () => {
             }
         };
 
+        const fetchQuestions = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5000/api/question/quiz/${quizId}`);
+                if (response.status !== 200) {
+                    setQuestionNotFound(true);
+                } else {
+                    setQuestions(response.data);
+                }
+            } catch (error) {
+                console.error('Error fetching questions:', error);
+                setQuestionNotFound(true);
+            }
+        };
+
         if (quizId) {
             fetchQuiz();
+            fetchQuestions();
         } else {
             setQuizNotFound(true);
         }
@@ -38,93 +57,24 @@ const ViewQuiz = () => {
             {quizFound && (
                 <div className="quiz-container container d-flex gap-5">
                     <div className="quiz-questions-container col">
-                        <div className="quiz-question border p-3 rounded-3 mb-3">
-                            <h5>Question 1</h5>
-                            <div className="d-grid quiz-answers">
-                                <span className="col-3">Answer 1</span>
-                                <span className="col-3">Answer 2</span>
-                                <span className="col-3">Answer 3</span>
-                            </div>
-                        </div>
-                        <div className="quiz-question border p-3 rounded-3 mb-3">
-                            <h5>Question 2</h5>
-                            <div className="d-grid quiz-answers">
-                                <span className="col-3">Answer 1</span>
-                                <span className="col-3">Answer 2</span>
-                                <span className="col-3">Answer 3</span>
-                            </div>
-                        </div>
-                        <div className="quiz-question border p-3 rounded-3 mb-3">
-                            <h5>Question 3</h5>
-                            <div className="d-grid quiz-answers">
-                                <span className="col-3">Answer 1</span>
-                                <span className="col-3">Answer 2</span>
-                                <span className="col-3">Answer 3</span>
-                            </div>
-                        </div>
-                        <div className="quiz-question border p-3 rounded-3 mb-3">
-                            <h5>Question 4</h5>
-                            <div className="d-grid quiz-answers">
-                                <span className="col-3">Answer 1</span>
-                                <span className="col-3">Answer 2</span>
-                                <span className="col-3">Answer 3</span>
-                            </div>
-                        </div>
-                        <div className="quiz-question border p-3 rounded-3 mb-3">
-                            <h5>Question 5</h5>
-                            <div className="d-grid quiz-answers">
-                                <span className="col-3">Answer 1</span>
-                                <span className="col-3">Answer 2</span>
-                                <span className="col-3">Answer 3</span>
-                            </div>
-                        </div>
-                        <div className="quiz-question border p-3 rounded-3 mb-3">
-                            <h5>Question 6</h5>
-                            <div className="d-grid quiz-answers">
-                                <span className="col-3">Answer 1</span>
-                                <span className="col-3">Answer 2</span>
-                                <span className="col-3">Answer 3</span>
-                            </div>
-                        </div>
-                        <div className="quiz-question border p-3 rounded-3 mb-3">
-                            <h5>Question 7</h5>
-                            <div className="d-grid quiz-answers">
-                                <span className="col-3">Answer 1</span>
-                                <span className="col-3">Answer 2</span>
-                                <span className="col-3">Answer 3</span>
-                            </div>
-                        </div>
-                        <div className="quiz-question border p-3 rounded-3 mb-3">
-                            <h5>Question 8</h5>
-                            <div className="d-grid quiz-answers">
-                                <span className="col-3">Answer 1</span>
-                                <span className="col-3">Answer 2</span>
-                                <span className="col-3">Answer 3</span>
-                            </div>
-                        </div>
-                        <div className="quiz-question border p-3 rounded-3 mb-3">
-                            <h5>Question 9</h5>
-                            <div className="d-grid quiz-answers">
-                                <span className="col-3">Answer 1</span>
-                                <span className="col-3">Answer 2</span>
-                                <span className="col-3">Answer 3</span>
-                            </div>
-                        </div>
-                        <div className="quiz-question border p-3 rounded-3 mb-3">
-                            <h5>Question 10</h5>
-                            <div className="d-grid quiz-answers">
-                                <span className="col-3">Answer 1</span>
-                                <span className="col-3">Answer 2</span>
-                                <span className="col-3">Answer 3</span>
-                            </div>
-                        </div>
+                        {!questionNotFound && questions.length > 0 && (
+                            questions.map((question) => (
+                                <div className="quiz-question border p-3 rounded-3 mb-3" key={question.id}>
+                                    <h5>{question.name}</h5>
+                                    <div className="d-grid quiz-answers gap-3">
+                                        {question.answers.map((answer) => (
+                                            <span className="quiz-answer p-2" key={answer.id} data-is-correct={answer.isCorrect}> {answer.answer} </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            )
+                        ))}
                     </div>
                     <div
                         className="quiz-info-container col border rounded-3 overflow-hidden d-flex flex-column align-items-center gap-4">
-                        {/*TODO: Implement quiz cover*/}
                         <div className="quiz-img-container">
                             <img
-                                src='https://www.planetcarsz.com/img/noticias/2022/05/koenigsegg-jesko-absolut-2022-04-20220502175001-1920x1080.jpg'
+                                src={(quizFound.imageUrl!==null)?quizFound.imageUrl:"https://placeholder.com/1920x1080"}
                                 alt='Quiz' className="w-100"/>
                         </div>
                         <div className="quiz-data-container d-flex flex-column pb-4">

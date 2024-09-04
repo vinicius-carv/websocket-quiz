@@ -1,3 +1,24 @@
-.quizes .card:hover{
-  cursor: pointer;
+.quizes{
+  grid-template-columns: 1fr 1fr 1fr;
+  .card{
+    transition: transform ease-in-out 0.1s;
+    background-color: transparent;
+    p {
+      color: var(--text-color)
+    }
+    .quiz-thumbnail-container {
+      max-height: 14rem;
+      overflow: hidden;
+    }
+  }
+  .card:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+}
+
+@media screen and (max-width: 769px){
+  .quizes{
+    grid-template-columns: 1fr;
+  }
 }

@@ -1,4 +1,10 @@
 .quiz-container {
+  @media screen and (min-width: 769px) {
+    .col {
+      min-width: 30rem;
+    }
+  }
+
   .quiz-questions-container {
     flex-basis: 50%;
 
@@ -6,8 +12,21 @@
       &:hover {
         cursor: default;
       }
+
       .quiz-answers {
         grid-template-columns: 1fr 1fr;
+
+        .quiz-answer {
+          text-align: left;
+          border: 1px solid var(--text-color);
+          border-radius: 4px;
+        }
+
+        .quiz-answer[data-is-correct='true'] {
+          color: green;
+          border-color: green;
+          font-weight: 600;
+        }
       }
     }
   }
@@ -15,13 +34,15 @@
   .quiz-info-container {
     flex-basis: 50%;
     height: fit-content;
+
     .quiz-data-container {
 
       .quiz-action-btn {
         background-color: transparent !important;
         width: fit-content;
         height: fit-content;
-        &:hover{
+
+        &:hover {
           border: none !important;
         }
       }
